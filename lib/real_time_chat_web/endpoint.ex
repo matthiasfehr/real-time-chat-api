@@ -38,6 +38,8 @@ defmodule RealTimeChatWeb.Endpoint do
     key: "_real_time_chat_key",
     signing_salt: "o787n8Vz"
 
+  plug CORSPlug, origin: ["*"]
+
   plug RealTimeChatWeb.Router
 
   @doc """

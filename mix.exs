@@ -45,7 +45,8 @@ defmodule RealTimeChat.Mixfile do
       {:absinthe_plug, "~> 1.4.0-beta.1"},
       {:absinthe_ecto, git: "https://github.com/absinthe-graphql/absinthe_ecto.git"},
       {:poison, ">= 2.1.0"},
-      {:faker, ">= 0.0.0"}
+      {:faker, ">= 0.0.0"},
+      {:cors_plug, "~> 1.3"},
     ]
   end
 

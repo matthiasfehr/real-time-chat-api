@@ -6,8 +6,9 @@ defmodule RealTimeChat.Chat.MessageResolver do
   end
 
   def create(args, _info) do
+    {message_args, _} = Map.pop(args, :message_input)
     %Message{}
-    |> Message.changeset(args)
+    |> Message.changeset(message_args)
     |> Repo.insert
   end
 end

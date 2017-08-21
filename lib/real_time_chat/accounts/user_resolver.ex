@@ -11,4 +11,10 @@ defmodule RealTimeChat.Accounts.UserResolver do
       user -> {:ok, user}
     end
   end
+
+  def create(args, _info) do
+    %User{}
+    |> User.changeset(args)
+    |> Repo.insert
+  end
 end

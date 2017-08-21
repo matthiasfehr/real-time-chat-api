@@ -11,4 +11,10 @@ defmodule RealTimeChat.Chat.ChatRoomResolver do
       chat_room -> {:ok, chat_room}
     end
   end
+
+  def create(args, _info) do
+    %ChatRoom{}
+    |> ChatRoom.changeset(args)
+    |> Repo.insert
+  end
 end

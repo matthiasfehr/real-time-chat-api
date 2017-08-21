@@ -23,4 +23,10 @@ defmodule RealTimeChat.Schema.Types do
     field :user, :user, resolve: assoc(:user)
     field :chat_room, :chat_room, resolve: assoc(:chat_room)
   end
+
+  input_object :message_input do
+    field :user_id, non_null(:id)
+    field :chat_room_id, non_null(:id)
+    field :body, non_null(:string)
+  end
 end

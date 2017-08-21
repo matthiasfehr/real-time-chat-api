@@ -28,11 +28,26 @@ defmodule RealTimeChat.Schema do
 
   mutation do
     field :create_message, type: :message do
-      arg :body, non_null(:string)
-      arg :user_id, non_null(:integer)
-      arg :chat_room_id, non_null(:integer)
+#      arg :body, non_null(:string)
+#      arg :user_id, non_null(:id)
+#      arg :chat_room_id, non_null(:id)
+      arg :message_input, non_null(:message_input)
 
       resolve &RealTimeChat.Chat.MessageResolver.create/2
+    end
+
+    field :create_chat_room, type: :chat_room do
+      arg :title, non_null(:string)
+      arg :user_id, non_null(:id)
+
+      resolve &RealTimeChat.Chat.ChatRoomResolver.create/2
+    end
+
+    field :create_user, type: :user do
+      arg :name, non_null(:string)
+      arg :email, non_null(:string)
+
+      resolve &RealTimeChat.Accounts.UserResolver.create/2
     end
   end
 end
