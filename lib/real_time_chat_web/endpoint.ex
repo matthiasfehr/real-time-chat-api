@@ -1,5 +1,6 @@
 defmodule RealTimeChatWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :real_time_chat
+  use Absinthe.Phoenix.Endpoint
 
   socket "/socket", RealTimeChatWeb.UserSocket
 

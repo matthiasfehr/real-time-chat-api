@@ -14,6 +14,7 @@ defmodule RealTimeChat.Application do
       supervisor(RealTimeChatWeb.Endpoint, []),
       # Start your own worker by calling: RealTimeChat.Worker.start_link(arg1, arg2, arg3)
       # worker(RealTimeChat.Worker, [arg1, arg2, arg3]),
+      supervisor(Absinthe.Subscription, [RealTimeChatWeb.Endpoint]),
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

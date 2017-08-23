@@ -28,9 +28,6 @@ defmodule RealTimeChat.Schema do
 
   mutation do
     field :create_message, type: :message do
-#      arg :body, non_null(:string)
-#      arg :user_id, non_null(:id)
-#      arg :chat_room_id, non_null(:id)
       arg :message_input, non_null(:message_input)
 
       resolve &RealTimeChat.Chat.MessageResolver.create/2
@@ -48,6 +45,27 @@ defmodule RealTimeChat.Schema do
       arg :email, non_null(:string)
 
       resolve &RealTimeChat.Accounts.UserResolver.create/2
+    end
+  end
+
+  subscription do
+    field :message_added, :message do
+      arg :chat_room_id, non_null(:id)
+
+      topic &(String.to_integer(&1.chat_room_id))
+
+#      This is the shorthand function for this:
+#      topic fn args ->
+#        String.to_integer(args.chat_room_id)
+#      end
+
+#      Trigger does not work when mutation is done over websocket, so it is commented out here
+#      trigger :create_message, topic: &(&1.chat_room_id)
+
+#      Shorthand for:
+#      trigger :create_message, topic: fn message ->
+#        message.chat_room_id
+#      end
     end
   end
 end

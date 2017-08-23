@@ -1,11 +1,12 @@
 defmodule RealTimeChatWeb.UserSocket do
   use Phoenix.Socket
+  use Absinthe.Phoenix.Socket
 
   ## Channels
   # channel "room:*", RealTimeChatWeb.RoomChannel
 
   ## Transports
-  transport :websocket, Phoenix.Transports.WebSocket
+  transport :websocket, Phoenix.Transports.WebSocket, check_origin: false
   # transport :longpoll, Phoenix.Transports.LongPoll
 
   # Socket params are passed from the client and can
@@ -20,7 +21,7 @@ defmodule RealTimeChatWeb.UserSocket do
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
   def connect(_params, socket) do
-    {:ok, socket}
+    {:ok, assign(socket, :absinthe, %{schema: RealTimeChat.Schema})}
   end
 
   # Socket id's are topics that allow you to identify all sockets for a given user:

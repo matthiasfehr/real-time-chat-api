@@ -26,7 +26,7 @@ defmodule RealTimeChat.Mixfile do
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_),     do: ["lib"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Specifies your project dependencies.
   #
@@ -44,7 +44,8 @@ defmodule RealTimeChat.Mixfile do
       {:absinthe, "~> 1.4.0-beta.3", override: true},
       {:absinthe_plug, "~> 1.4.0-beta.1"},
       {:absinthe_ecto, git: "https://github.com/absinthe-graphql/absinthe_ecto.git"},
-      {:poison, ">= 2.1.0"},
+      {:absinthe_phoenix, github: "absinthe-graphql/absinthe_phoenix", branch: "master", override: true},
+      {:poison, ">= 2.1.0", override: true},
       {:faker, ">= 0.0.0"},
       {:cors_plug, "~> 1.3"},
     ]

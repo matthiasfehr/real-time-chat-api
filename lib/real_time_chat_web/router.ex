@@ -31,5 +31,7 @@ defmodule RealTimeChatWeb.Router do
   forward "/graphql", Absinthe.Plug,
           schema: RealTimeChat.Schema
   forward "/graphiql", Absinthe.Plug.GraphiQL,
-          schema: RealTimeChat.Schema
+          schema: RealTimeChat.Schema,
+          socket: RealTimeChatWeb.UserSocket,
+          interface: :simple
 end
