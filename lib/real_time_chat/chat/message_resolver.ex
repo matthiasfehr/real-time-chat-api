@@ -6,8 +6,7 @@ defmodule RealTimeChat.Chat.MessageResolver do
   end
 
   def create(args, _info) do
-    message_args = elem(args, 0)
-    with {:ok, %Message{} = message} <- RealTimeChat.Chat.create_message(message_args) do
+    with {:ok, %Message{} = message} <- RealTimeChat.Chat.create_message(args.message_input) do
 #     Publish to subscriptions manually (since trigger in schema doesn't work for websocket mutations)
       Absinthe.Subscription.publish(RealTimeChatWeb.Endpoint, message, [message_added: message.chat_room_id])
       {:ok, message}
